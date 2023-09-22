@@ -325,7 +325,7 @@ def std_viewCompany():
     
 
 
-    return render_template('StudentProfile.html', student_id = student_id, cmpName = cmpName)
+    # return render_template('StudentProfile.html', student_id = student_id, cmpName = cmpName)
 
 
 
