@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Student Profile</title>
+</head>
+<center>
+	<font color="black" size="5" style="font-family: avenir">
+
+		<h1 style="color: DodgerBlue">Student Information</h1>
+
+		<body bgcolor="lightgrey">
+
+			{% for stn_Infor in stnInfor %}<br><br>
+					Student ID:<br> {{ student_id }} <br><br>
+
+			  		First Name:<br> {{ stn_Infor[0] }} <br><br>
+
+			  		Last Name:<br> {{ stn_Infor[1] }} <br><br>
+
+
+
+			<table id="Intern Status">
+                <thead>
+                    <tr>
+                        <th>Company ID</th>
+                        <th>Company Name</th>
+                        <th>Intern Status</th>
+
+                    </tr>
+                    {% for cmpname in std_cmpDetails %}
+                    <tr>
+                        <td>{{cmpname[0]}}</td>
+                        <td>{{cmpname[1]}}</td>
+                        <td>{{cmpname[2]}}</td>
+
+                    </tr>
+                </thead>
+                <tbody id="showCompanyTable">
+                    <!-- Recorded data will be added here -->
+                </tbody>
+            </table>
+
+					
+			<form action="/studentprofile" autocomplete="on" method = "POST" enctype="multipart/form-data">  
+				<div>
+
+                    Please name your upload file with this format"yourname_CompanyAcceptanceLetter"<br><br>
+
+                    Upload your Company Acceptance Letter and Parent Acknowledgement form here:<br> <input type=file name="std_letter_A" style="height:25px;font-size:14pt;color:grey;"> <br><br>
+                    Upload your Internship Progress Report and Supervisor evaluation form here:<br> <input type=file name="std_letter_B" style="height:25px;font-size:14pt;color:grey;"> <br><br>
+
+					<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Upload File</button><br><br>
+
+			  	</div>
+
+			</form>
+
+		</body>
+
+	</font>
+</center>
+</html>
+

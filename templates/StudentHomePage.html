@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+    <style>
+    table {
+     border-collapse: collapse;
+     width: 80%;
+        margin: 20px auto;
+    }
+
+    table, th, td {
+     border: 1px solid #ccc;
+    }
+
+    th, td {
+     padding: 8px;
+        text-align: left;
+    }
+
+    th {
+     background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+        </style>
+</head>
+<center>
+	<font color="black" size="5" style="font-family: avenir">
+
+		<h1 style="color: DodgerBlue">Internship</h1>
+
+		<body bgcolor="lightgrey">
+
+			<form action="/std_homepage" autocomplete="on" method="POST">
+
+				<h2 style="color: grey">Enter Company ID</h2>
+
+		  		Company ID:<br> <input style="height:25px;font-size:14pt;" type="number" name="cmp_id" autofocus size="40"><br><br>
+
+
+		  		<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">FETCH INFO</button><br><br>
+
+			</form>
+
+            <table id="Company List">
+                <thead>
+                    <tr>
+                        <th>Company ID</th>
+                        <th>Company Name</th>
+                        <th>Company Position Required</th>
+
+                    </tr>
+                    {% for cmpname in std_cmpDetails %}
+                    <tr>
+                        <td>{{cmpname[0]}}</td>
+                        <td>{{cmpname[1]}}</td>
+                        <td>{std_jobDetails}</td>
+
+                    </tr>
+                </thead>
+                <tbody id="showCompanyTable">
+                    <!-- Recorded data will be added here -->
+                </tbody>
+            </table>
+
+            <form action="/viewProfile" autocomplete="on" method = "POST" enctype="multipart/form-data">  
+				<div>
+
+                    
+					<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Profile Page</button><br><br>
+
+			  	</div>
+
+			</form>
+
+		</body>
+	</font>
+</center>
+</html>
+

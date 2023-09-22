@@ -1,0 +1,49 @@
+This code is about how to fetch and display data WITHIN SAME page
+flow: button clicked -> info displayed
+need js
+
+
+
+
+@app.route('/get_companies', methods=['GET'])
+def get_companies():
+    cursor = db_conn.cursor()
+    cursor.execute("SELECT companyName, companyAddress, companyWebsite, companyPIC, companyEmail, company_file, companyStatus FROM company WHERE companyStatus = 'Approved'")
+    companies = cursor.fetchall()
+    cursor.close()
+    return jsonify(companies)
+
+<script type="text/javascript">
+            $(document).ready(function () {
+              $.ajax({
+                url: '/get_companies',
+                type: 'GET',
+                success: function (data) {
+                  var tableBody = $('#companiesTable tbody');
+
+                  data.forEach(function (company) {
+                    var row = $('<tr>');
+                    row.append('<td>' + company[0] + '</td>');
+                    row.append('<td>' + company[1] + '</td>');
+                    row.append('<td><a href="/companyDetails/' + company[0] + '" class="company-details-link">View Details</a></td>');
+                    tableBody.append(row);
+
+                    row.attr('id', 'companyRow');
+                  });
+                }
+              });
+
+            });
+
+<table class="table table-striped" id="companiesTable">
+                <thead>
+                  <tr>
+                    <th>Company Name</th>
+                    <th>Company Address</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Rows will be added here using JavaScript -->
+                </tbody>
+              </table>

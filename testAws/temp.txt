@@ -1,0 +1,52 @@
+This code is about how to fetch and display data
+The flow: button in pageA clicked -> redirect to pageB with passing values -> pageB display
+no need write js
+
+
+
+in py 
+@app.route("/jobApplicationDetails/<string:jobTitle>", methods=['GET','POST'])
+def jobApplicationDetails(jobTitle):
+    email = session.get('companyEmail')  # Retrieve email from session
+    cursor = db_conn.cursor()
+    print(email)
+    cursor.execute("SELECT studentEmail,applyDateTime,applicationStatus FROM jobApplication JOIN company WHERE jobApplication.companyName = company.companyName AND company.companyEmail = %s AND jobApplication.jobTitle = %s ", (email, jobTitle))
+    applications = cursor.fetchall()
+    print(applications)
+    cursor.close()
+    return render_template('company/companyJobApplication.html', applications=applications,jobTitle=jobTitle)
+
+in html
+table class="table table-striped table-hover table-bordered" style="width:100%" id="applicationsTable">
+                            <thead>
+                                <tr>
+                                    <th>Student Email</th>
+                                    <th>Apply Date Time</th>
+                                    <th>Application Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for application in applications %}
+                                    <tr>
+                                        <td><a href="/studentDetails/{{ application[0] }}">{{ application[0] }}</a></td>
+                                        <td>{{ application[1] }}</td>
+                                        <td>{{ application[2] }}</td>
+                                        <td>
+                                            <form action="{{ url_for('approveApplication') }}" method="post">
+                                                <input type="hidden" name="studentEmail" value="{{ application[0] }}">
+                                                <input type="hidden" name="jobTitle" value="{{ jobTitle }}">
+                                                <button type="submit" class="btn btn-success" {% if application[2] != 'Pending' %}disabled{% endif %}>Approved</button>
+                                            </form>
+                                            <form action="{{ url_for('rejectApplication') }}" method="post">
+                                                <input type="hidden" name="studentEmail" value="{{ application[0] }}">
+                                                <input type="hidden" name="jobTitle" value="{{ jobTitle }}">
+                                                <button type="submit" class="btn btn-danger" {% if application[2] != 'Pending' %}disabled{% endif %}>Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+application[] is the data fetch
