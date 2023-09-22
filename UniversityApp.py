@@ -227,7 +227,7 @@ def std_home_page():
 
     # Student apply intern function
 @app.route('/stdapplyintern', methods=['GET', 'POST'])
-def std_viewCompany(cmp_id):
+def std_viewCompany():
     
     global std_cmpDetails
     global std_jobDetails
