@@ -289,8 +289,8 @@ def std_viewCompany(cmp_id):
     std_letter_file = request.files['std_letter_A']
     std_form_file = request.files['std_letter_B']
 
-        if std_letter_file.filename == "" or std_form_file.filename == "":
-          return "Please select a file"
+        # if std_letter_file.filename == "" or std_form_file.filename == "":
+        #   return "Please select a file"
 
 
     
