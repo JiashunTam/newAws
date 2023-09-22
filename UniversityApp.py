@@ -163,7 +163,7 @@ def signin_page():
     global student_id  # Declare student_id as a global variable if not already declared globally
     global std_cmpDetails
     global std_jobDetails
-    
+
     student_id = request.form.get('std_lg_id')
     password = request.form.get('std_lg_pass')
 
@@ -261,7 +261,7 @@ def std_viewCompany(cmp_id):
 
     # Student View Profile function
 @app.route('/viewProfile', methods=['GET', 'POST'])
-def std_viewCompany(cmp_id):
+def std_viewCompany():
     
     global student_id
 
