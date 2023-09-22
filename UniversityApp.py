@@ -96,7 +96,7 @@ def toIndex():
 # Redirect index (signup)
 @app.route('/')
 def toStdSignUp():
-return render_template('StudentSignUp.html')
+    return render_template('StudentSignUp.html')
 
 # Redirect to login
 @app.route('/StudLoginPage')
