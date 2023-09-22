@@ -181,8 +181,8 @@ def signin_page():
     std_jobDetails = cursor.fetchcall()
     cursor.close()
 
-    global std_cmpDetails = std_cmpDetails
-    global std_jobDetails = std_jobDetails
+    global std_cmpDetails
+    global std_jobDetails
 
 
     # Check if the student exists in the dictionary (for demonstration purposes)
