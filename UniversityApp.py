@@ -161,6 +161,9 @@ def signup():
 def signin_page():
     # return render_template('StudLogin.html')
     global student_id  # Declare student_id as a global variable if not already declared globally
+    global std_cmpDetails
+    global std_jobDetails
+    
     student_id = request.form.get('std_lg_id')
     password = request.form.get('std_lg_pass')
 
@@ -181,8 +184,7 @@ def signin_page():
     std_jobDetails = cursor.fetchcall()
     cursor.close()
 
-    global std_cmpDetails
-    global std_jobDetails
+    
 
 
     # Check if the student exists in the dictionary (for demonstration purposes)
