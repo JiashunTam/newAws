@@ -117,6 +117,7 @@ def toStdViewCompPage():
 #----------------------------------------------------------------------------global variable
 
 student_id = ""
+student_password = ""
 std_company_id = ""
 std_cmpDetails = ""
 std_jobDetails = ""
@@ -128,26 +129,27 @@ std_jobDetails = ""
 
 @app.route('/studentsignup', methods=['GET', 'POST'])
 def signup():
+    global student_password
     student_id = request.form.get('std_id')
     first_name = request.form.get('std_first_name')
     last_name = request.form.get('std_last_name')
-    password = request.form.get('std_pass')
+    student_password = request.form.get('std_pass')
     confirm_password = request.form.get('confirm_std_pass')
     intern_status = "None"
 
     # Check if passwords match
-    if password != confirm_password:
+    if student_password != confirm_password:
         return "Password confirmation does not match."
 
     # Store student data in the dictionary
     students[student_id] = {
         'first_name': first_name,
         'last_name': last_name,
-        'password': password
+        'password': student_password
     }
     insert_sql = "INSERT INTO studentInformation VALUES (%s, %s, %s, %s)"
     cursor = db_conn.cursor()
-    cursor.execute(insert_sql, (student_id, first_name, last_name, password))
+    cursor.execute(insert_sql, (student_id, first_name, last_name, student_password))
     db_conn.commit()
     cursor.close()
 
@@ -163,6 +165,7 @@ def signin_page():
     global student_id  # Declare student_id as a global variable if not already declared globally
     global std_cmpDetails
     global std_jobDetails
+    global student_password
 
     student_id = request.form.get('std_lg_id')
     password = request.form.get('std_lg_pass')
@@ -188,7 +191,7 @@ def signin_page():
 
 
     # Check if the student exists in the dictionary (for demonstration purposes)
-    if dbPassword == password:
+    if dbPassword == student_password:
         return f"Welcome, Student with ID {student_id}!"
         return render_template('StudentHomePage.html', std_cmpDetails = std_cmpDetails, std_jobDetails = std_jobDetails)
     else:
