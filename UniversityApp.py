@@ -283,43 +283,43 @@ def std_viewCompany(cmp_id):
      #------------------------ Profile Page
 
     # Student Upload forder function
-@app.route('/viewProfile', methods=['GET', 'POST'])
-def std_viewCompany(cmp_id):
+# @app.route('/viewProfile', methods=['GET', 'POST'])
+# def std_viewCompany(cmp_id):
 
-    std_letter_file = request.files['std_letter_A']
-    std_form_file = request.files['std_letter_B']
+#     std_letter_file = request.files['std_letter_A']
+#     std_form_file = request.files['std_letter_B']
 
-        # if std_letter_file.filename == "" or std_form_file.filename == "":
-        #   return "Please select a file"
+#         # if std_letter_file.filename == "" or std_form_file.filename == "":
+#         #   return "Please select a file"
 
 
     
-        #Uplaod image file in S3 #
-        std_letter_file = "std-id-" + str(global student id) + "_letter_file"
-        std_form_file = "std-id-" + str(global student id) + "_form_file"
-        s3 = boto3.resource('s3')
+#         #Uplaod image file in S3 #
+#         std_letter_file = "std-id-" + str(global student id) + "_letter_file"
+#         std_form_file = "std-id-" + str(global student id) + "_form_file"
+#         s3 = boto3.resource('s3')
 
-        try:
-            # Upload the first file (std_letter_file)
-            print(f"Uploading {std_letter_file} to S3...")
-            s3.upload_file(std_letter_file, custombucket, std_letter_file)
-            print(f"{std_letter_file} uploaded successfully!")
+#         try:
+#             # Upload the first file (std_letter_file)
+#             print(f"Uploading {std_letter_file} to S3...")
+#             s3.upload_file(std_letter_file, custombucket, std_letter_file)
+#             print(f"{std_letter_file} uploaded successfully!")
 
-            # Upload the second file (std_form_file)
-            print(f"Uploading {std_form_file} to S3...")
-            s3.upload_file(std_form_file, custombucket, std_form_file)
-            print(f"{std_form_file} uploaded successfully!")
+#             # Upload the second file (std_form_file)
+#             print(f"Uploading {std_form_file} to S3...")
+#             s3.upload_file(std_form_file, custombucket, std_form_file)
+#             print(f"{std_form_file} uploaded successfully!")
 
-            # Get the S3 bucket location
-            bucket_location = s3.get_bucket_location(Bucket=custombucket)
-            s3_location = bucket_location.get('LocationConstraint', '')
+#             # Get the S3 bucket location
+#             bucket_location = s3.get_bucket_location(Bucket=custombucket)
+#             s3_location = bucket_location.get('LocationConstraint', '')
 
-            # Construct URLs for both files
-            letter_object_url = f"https://s3{s3_location}.amazonaws.com/{custombucket}/{std_letter_file}"
-            form_object_url = f"https://s3{s3_location}.amazonaws.com/{custombucket}/{std_form_file}"
+#             # Construct URLs for both files
+#             letter_object_url = f"https://s3{s3_location}.amazonaws.com/{custombucket}/{std_letter_file}"
+#             form_object_url = f"https://s3{s3_location}.amazonaws.com/{custombucket}/{std_form_file}"
 
-        except Exception as e:
-            return str(e) 
+#         except Exception as e:
+#             return str(e) 
     
 
 
