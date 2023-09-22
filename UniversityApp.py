@@ -261,7 +261,7 @@ def std_viewCompany():
 
     # Student View Profile function
 @app.route('/viewProfile', methods=['GET', 'POST'])
-def std_viewCompany():
+def std_viewProfile():
     
     global student_id
 
