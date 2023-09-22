@@ -79,22 +79,22 @@ output = {}
 
 
 
-# Home page
-@app.route("/", methods=['GET', 'POST'])
-def home():
-    return render_template('StudentSignUp.html')
+# # Home page
+# @app.route("/", methods=['GET', 'POST'])
+# def home():
+#     return render_template('StudentSignUp.html')
 
 # START CODING HERE
 
 #------------------------------------------------------------------------------Student Sign Up(Jia Shun)
 students = {}
 # Redirect index
-@app.route('/')
+@app.route('/toIndex')
 def toIndex():
     return render_template('index.html')
 
 # Redirect index (signup)
-@app.route('/')
+@app.route('/toStdSignUp')
 def toStdSignUp():
     return render_template('StudentSignUp.html')
 
