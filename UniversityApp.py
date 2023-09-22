@@ -160,8 +160,8 @@ def signup():
 @app.route('/studlogin', methods=['GET', 'POST'])
 def signin_page():
     # return render_template('StudLogin.html')
+    global student_id  # Declare student_id as a global variable if not already declared globally
     student_id = request.form.get('std_lg_id')
-    global student_id = student_id
     password = request.form.get('std_lg_pass')
 
     select_stmt = "SELECT std_password FROM studentInformation WHERE std_id =%s"
@@ -201,9 +201,9 @@ def signin_page():
     # Student home function
 @app.route('/std_homepage', methods=['GET', 'POST'])
 def std_home_page():
-   
-    company_id = request.form.get('cmp_id')
-    global std_company_id = company_id
+    global std_company_id
+    std_company_id = request.form.get('cmp_id')
+    
 
     search_cmp = "SELECT comp_name, comp_industry, comp_address FROM company WHERE comp_id=%s"
     cursor = db_conn.cursor()
@@ -227,12 +227,12 @@ def std_home_page():
 @app.route('/stdapplyintern', methods=['GET', 'POST'])
 def std_viewCompany(cmp_id):
     
-    std_cmpDetails = global std_cmpDetails
-    std_jobDetails = global std_jobDetails
+    global std_cmpDetails
+    global std_jobDetails
 
-    student_id = global student_id
+    global student_id
 
-    company_id = global company_id
+    global company_id
 
     search_cmp = "SELECT comp_name FROM company WHERE comp_id=%s"
     cursor = db_conn.cursor()
@@ -261,7 +261,7 @@ def std_viewCompany(cmp_id):
 @app.route('/viewProfile', methods=['GET', 'POST'])
 def std_viewCompany(cmp_id):
     
-    student_id = global student_id
+    global student_id
 
     search_cmp = "SELECT std_first_name, std_last_name FROM studentInformation WHERE std_id=%s"
     cursor = db_conn.cursor()
