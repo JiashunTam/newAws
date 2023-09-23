@@ -54,13 +54,12 @@
                         <th>Company Position Required</th>
 
                     </tr>
-                    {% for cmpname in std_cmpDetails %}
+                    {% for jobName in jobName %}
                     <tr>
                         <td>{{cmpname[0]}}</td>
                         <td>{{cmpname[1]}}</td>
-                        {% endfor %}
-                        {% for jobName in jobName %}
-                        <td>{{jobName[0]}}</td>
+                        <td>{{cmpname[2]}}</td>
+                        <td>{{cmpname[3]}}</td>
                         {% endfor %}
                         
                     </tr>

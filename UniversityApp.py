@@ -177,13 +177,9 @@ def student_signin():
     student_id = request.args.get('std_lg_id')
     password = request.args.get('std_lg_pass')
 
-    show_company = "SELECT comp_id, comp_name FROM company"
-    cursor = db_conn.cursor()
-    cursor.execute(show_company)
-    cmpList = cursor.fetchall()
-    cursor.close()
+  
 
-    show_job = "SELECT job_name FROM internship"
+    show_job = "SELECT comp_id, job_id, job_name, job_description FROM internship"
     cursor = db_conn.cursor()
     cursor.execute(show_job)
     jobName = cursor.fetchall()
@@ -194,7 +190,7 @@ def student_signin():
         for row in dbPassword:
             if row[0] == student_id and row[1] == password:
                 # session['std_id'] = student_id  # Store student_id in the session for future uses
-                return render_template('StudentHomePage.html', std_cmpDetails = cmpList, jobName = jobName)
+                return render_template('StudentHomePage.html', jobName = jobName)
         
         # If none of the rows matched, return an error message
         return "Wrong username or password"
