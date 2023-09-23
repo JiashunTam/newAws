@@ -1,41 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>View Company</title>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Company Home Page</title>
+    <link rel="icon" type="image/x-icon" href="static/images/logo4.png">
+    <!-- Bootstrap -->
+	<link href="static/css/bootstrap.css" rel="stylesheet">
+	<!-- DL Menu CSS -->
+	<link href="static/js/dl-menu/component.css" rel="stylesheet">
+	<!--SLICK SLIDER CSS-->
+	<link rel="stylesheet" type="text/css" href="static/css/slick.css" />
+	<!-- Font Awesome StyleSheet CSS -->
+	<link href="static/css/font-awesome.min.css" rel="stylesheet">
+	<!-- Font Awesome StyleSheet CSS -->
+	<link href="static/css/svg.css" rel="stylesheet">
+	<!-- Pretty Photo CSS -->
+	<link href="static/css/prettyPhoto.css" rel="stylesheet">
+	<!-- Shortcodes CSS -->
+	<link href="static/css/shortcodes.css" rel="stylesheet">
+	<!-- Widget CSS -->
+	<link href="static/css/widget.css" rel="stylesheet">
+	<!-- Typography CSS -->
+	<link href="static/css/typography.css" rel="stylesheet">
+	<!-- Custom Main StyleSheet CSS -->
+	<link href="static/style.css" rel="stylesheet">
+	<!-- Color CSS -->
+	<link href="static/css/color.css" rel="stylesheet">
+	<!-- Responsive CSS -->
+	<link href="static/css/responsive.css" rel="stylesheet">
 </head>
 <center>
-	<font color="black" size="5" style="font-family: avenir">
+    <font color="black" size="4" style="font-family: avenir">
+        <h1 style="color: DodgerBlue">Details of job</h1>
+        <body>
+            <center>
+                <font color="black" size="4" style="font-family: avenir">
+                    Company ID: 
+                    <strong id="company_id_display">{{ company_log_id }}</strong><br><br>
 
-		<h1 style="color: DodgerBlue">Company Information</h1>
+                    <table border="1">
+                        <tr>
+                            <th>Job ID</th>
+                            <th>Job Name</th>
+                            <th>Job Description</th>
+                            <th>Job Status</th>
+                        </tr>
+                        {% for row in company_job_data %}
+                        <tr>
+                            <td>{{ row[1] }}</td>
+                            <td>{{ row[2] }}</td>
+                            <td>{{ row[3] }}</td>
+                            <td>{{ row[4] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
 
-		<body bgcolor="lightgrey">
-
-			<form action="/stdapplyintern" autocomplete="on" method = "POST" enctype="multipart/form-data">
-
-				<div>
-
-                    
-			  		Company ID:<br> {{ cmpId }} <br><br>
-
-			  		Company Name:<br> {{ cmpName }} <br><br>
-
-			  		Company Position Required:<br> {{ cmpPR }} <br><br>
-
-			  		Position Details:<br> {{ cmpPD }} <br><br>
-
-			  		Company Email:<br> {{ 	 }} <br><br>
-
-			  		Company Address: <br> {{ cmpAddress }} <br><br>
-
-			  		<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Apply Internship</button>
-
-			  	</div>
-
-			</form>
-
-		</body>
-
-	</font>
+					<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Apply Internship</button>
+                </font>
+            </center>
+        </body>
+    </font>
 </center>
 </html>
+
 
