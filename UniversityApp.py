@@ -339,11 +339,11 @@ def std_viewProfile():
     @app.route('/studentprofile', methods=['GET', 'POST'])
     def student_upload_file():
     # Retrieve company_log_id from the session
-         global student_id
+            global student_id
 
  
-            std_letter_file = request.files.get(std_letter_A)
-            std_form_file = request.files.get(std_letter_B)
+            std_letter_file = request.files.get('std_letter_A')
+            std_form_file = request.files.get('std_letter_B')
       
 
             student_file_nameA = str(student_id) + "_" + std_letter_file + ".pdf"
