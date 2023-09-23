@@ -134,7 +134,7 @@ std_jobDetails = ""
 
 @app.route('/studentsignup', methods=['GET', 'POST'])
 def signup():
-    
+    global student_password
     student_id = request.form.get('std_id')
     first_name = request.form.get('std_first_name')
     last_name = request.form.get('std_last_name')
@@ -152,9 +152,9 @@ def signup():
         'last_name': last_name,
         'password': student_password
     }
-    insert_sql = "INSERT INTO studentInformation VALUES (%s, %s, %s, %s)"
+    insert_sql = "INSERT INTO studentInformation VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
-    cursor.execute(insert_sql, (student_id, first_name, last_name, student_password))
+    cursor.execute(insert_sql, (student_id, first_name, last_name, student_password, ""))
     db_conn.commit()
     cursor.close()
 
