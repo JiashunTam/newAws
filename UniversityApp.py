@@ -179,7 +179,7 @@ def signin_page():
         for row in student:
             if row[0] == student_id and row[3] == staff_log_password:
                 print ("Login successful")
-                return render_template('StudentHomePage.html')
+                return "correct"
             else:
                 return "Incorrect login details"
     return (password)
