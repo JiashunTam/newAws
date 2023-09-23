@@ -190,13 +190,12 @@ def student_signin():
     jobName = cursor.fetchall()
     cursor.close()
 
-    merged_company_data = np.concatenate((cmpList, jobName  ))
 
     if student_id and password:
         for row in dbPassword:
             if row[0] == student_id and row[1] == password:
                 # session['std_id'] = student_id  # Store student_id in the session for future uses
-                return render_template('StudentHomePage.html', std_cmpDetails = merged_company_data)
+                return render_template('StudentHomePage.html', std_cmpDetails = cmpList, jobName = jobName)
         
         # If none of the rows matched, return an error message
         return "Wrong username or password"
