@@ -14,23 +14,30 @@
 
 				<div>
 
-                    
-			  		Company ID:<br> {{ cmpId }} <br><br>
-
-			  		Company Name:<br> {{ cmpName }} <br><br>
-
-			  		Company Position Required:<br> {{ cmpPR }} <br><br>
-
-			  		Position Details:<br> {{ cmpPD }} <br><br>
-
-			  		Company Email:<br> {{ 	 }} <br><br>
-
-			  		Company Address: <br> {{ cmpAddress }} <br><br>
-
-			  		<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Apply Internship</button>
-
+					<table border="1">
+                        <tr>
+                            <th>Company Name</th>
+                            <th>Company Industries</th>
+                            <th>Company Address</th>
+                            <th>Job ID</th>
+							<th>Job Name</th>
+                            <th>Job Description</th>
+                        </tr>
+                        {% for row in company_job_data %}
+                        <tr>
+                            <td>{{ row[1] }}</td>
+                            <td>{{ row[2] }}</td>
+                            <td>{{ row[3] }}</td>
+                            <!-- <td>{{ row[4] }}</td> -->
+                            <td>{{ row[4] }}</td>
+                            <td>{{ row[5] }}</td>
+                            <td>{{ row[6] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+					<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Apply Intern</button>	
 			  	</div>
-
+				  
 			</form>
 
 		</body>
