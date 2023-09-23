@@ -82,7 +82,7 @@ output = {}
 # Home page
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('StudentHomePage.html')
+    return render_template('StudentSignUp.html')
 
 # START CODING HERE
 
@@ -154,7 +154,7 @@ def signup():
     }
     insert_sql = "INSERT INTO studentInformation VALUES (%s, %s, %s, %s, %s)"
     cursor = db_conn.cursor()
-    cursor.execute(insert_sql, (student_id, first_name, last_name, student_password, "pending"))
+    cursor.execute(insert_sql, (student_id, first_name, last_name, student_password, ""))
     db_conn.commit()
     cursor.close()
 
@@ -175,7 +175,12 @@ def signin_page():
     student_id = request.form.get('std_lg_id')
     password = request.form.get('std_lg_pass')
 
-    
+    select_stmt = "SELECT std_pass FROM studentInformation WHERE std_id =%s"
+    cursor = db_conn.cursor()
+    stdPassword = cursor.execute(select_stmt, (student_id))
+    stdPassword = mycursor.fetchone()
+    stdPassword = stdPassword[0]
+    cursor.close()
 
     
     cursor = db_conn.cursor()
@@ -192,12 +197,12 @@ def signin_page():
 
 
     # Check if the student exists in the dictionary (for demonstration purposes)
-    if student_password == password:
+    if student_password == stdPassword:
        
-        return render_template('StudentHomePage.html')
+        return render_template('StudentHomePage.html', std_cmpDetails = std_cmpDetails, std_jobDetails = std_jobDetails)
     else:
        
-        return "invalid username or password"
+        return "Invalid username or passw"
 
     
 
