@@ -184,7 +184,7 @@ def signin_page():
     
     cursor = db_conn.cursor()
     cursor.execute('SELECT comp_id, comp_name FROM company')
-    std_cmpDetails = cursor.fetchall()
+    std_cmpDetails = cursor.fetchone()
     cursor.close()
 
     cursor = db_conn.cursor()
@@ -201,7 +201,7 @@ def signin_page():
         return render_template('StudentHomePage.html', std_cmpDetails = std_cmpDetails, std_jobDetails = std_jobDetails)
     else:
        
-        return "heloo"
+        return "Invalid username or password"
 
     
 
