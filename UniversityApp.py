@@ -247,7 +247,7 @@ def std_viewCompany():
 
     apply_intern = "INSERT INTO student VALUES (%s, %s, %s, %s，%s, %s)"
     cursor = db_conn.cursor()
-    cursor.execute(apply_intern, (student_id, company_id, company_name, intern_status, "", ""))
+    cursor.execute(apply_intern, (student_id, std_company_id, company_name, intern_status, "", ""))
     db_conn.commit()
     cursor.close()
 
