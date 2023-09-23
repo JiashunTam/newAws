@@ -10,28 +10,13 @@
 
 		<body bgcolor="lightgrey">
 
-		    	<form action="/StudLoginPage" autocomplete="on" method = "POST" enctype="multipart/form-data">
+             <a href="{{url_for('StudLoginPage')}}"><button class="btn btn--primary btn--small u-fullwidth">Student</button></a>
 
-		  		<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Student</button>
+             <a href="{{url_for('StudLoginPage')}}"><button class="btn btn--primary btn--small u-fullwidth">Company</button></a>
 
-		    	</form>
+             <a href="{{url_for('StudLoginPage')}}"><button class="btn btn--primary btn--small u-fullwidth">Staff</button></a>
 
-             <form action="/toStdSignUp" autocomplete="on" method = "POST" enctype="multipart/form-data">
-
-                <button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Company</button>
-
-              </form>
-
-              <form action="/toStdSignUp" autocomplete="on" method = "POST" enctype="multipart/form-data">
-
-            <button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Staff</button>
-
-             </form>
-
-            <form action="/toStdSignUp" autocomplete="on" method = "POST" enctype="multipart/form-data">
-
-              <button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Supervisor</button>
-            </form>
+             <a href="{{url_for('StudLoginPage')}}"><button class="btn btn--primary btn--small u-fullwidth">Supervisor</button></a>
 
 		</body>
 

@@ -113,6 +113,11 @@ def toStdHomePage():
 def toStdViewCompPage():
     return render_template('StudentViewCompany.html')
 
+# Redirect to StudentHomePage
+@app.route('/StudViewProfile')
+def toStdViewCompPage():
+    return render_template('StudentProfile.html')
+
     
 #----------------------------------------------------------------------------global variable
 
@@ -250,9 +255,9 @@ def std_viewCompany():
 
 
 
-    apply_intern = "INSERT INTO student VALUES (%s, %s, %s, %s)"
+    apply_intern = "INSERT INTO student VALUES (%s, %s, %s, %s，%s, %s)"
     cursor = db_conn.cursor()
-    cursor.execute(apply_intern, (student_id, company_id, company_name, intern_status))
+    cursor.execute(apply_intern, (student_id, company_id, company_name, intern_status, "", ""))
     db_conn.commit()
     cursor.close()
 
@@ -329,6 +334,68 @@ def std_viewProfile():
 
 
     # return render_template('StudentProfile.html', student_id = student_id, cmpName = cmpName)
+
+
+    @app.route('/viewProfile', methods=['GET', 'POST'])
+    def student_upload_file():
+    # Retrieve company_log_id from the session
+         global student_id
+
+ 
+            std_letter_file = request.files.get(std_letter_A)
+            std_form_file = request.files.get(std_letter_B)
+      
+
+            student_file_nameA = str(student_id) + "_" + std_letter_file + ".pdf"
+            student_file_nameB = str(student_id) + "_" + std_form_file + ".pdf"
+
+            
+
+
+
+            if student_file_nameA == "":
+                return "ples selec a file"
+
+            try:
+                apply_intern = "INSERT INTO student VALUES (%s, %s, %s, %s，%s, %s)"
+                cursor = db_conn.cursor()
+                cursor.execute(apply_intern, ("", "", "", "", student_file_nameA, student_file_nameB))
+                db_conn.commit()
+                cursor.close()
+                # Upload image file in S3 
+                student_letter_in_s3 = student_file_nameA, student_file_nameB
+                s3 = boto3.resource('s3')
+
+                try:
+                    print("Data inserted...Uploaded to S3")
+                    s3.Bucket(custombucket).put_object(Key=student_letter_in_s3, Body=std_letter)
+                    bucket_location = boto3.client('s3').get_bucket_location(Bucket=custombucket)
+                    s3_location = (bucket_location['LocationConstraint'])
+
+                    if s3_location is None:
+                        s3_location = ''
+                    else: 
+                        s3_location = '-' + s3_location
+
+                    object_url = "https://s3{0}.amazonaws.com/{1}/{2}".format(
+                    s3_location,
+                    custombucket,
+                    student_letter_in_s3)
+
+
+                except Exception as e:
+                    return str(e)
+
+            except Exception as e:
+                return str(e)
+
+            finally:
+                cursor.close()
+
+            return "Letter posted successfully!"
+
+    # Render the template and pass the company_log_id and show_company_id to it
+    return render_template('StudentProfile.html')
 
 
 
