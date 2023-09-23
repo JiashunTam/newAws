@@ -197,11 +197,11 @@ def signin_page():
 
     # Check if the student exists in the dictionary (for demonstration purposes)
     if student_password == stdPassword:
-        f"Welcome, Student with ID {student_id}!"
-        return render_template('StudentHomePage.html')
+       
+        return render_template('StudentHomePage.html', std_cmpDetails = std_cmpDetails, std_jobDetails = std_jobDetails)
     else:
        
-        return stdPassword
+        return "Invalid username and data"
 
     
 
