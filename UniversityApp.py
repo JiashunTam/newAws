@@ -179,13 +179,13 @@ def student_signin():
 
     show_company = "SELECT comp_id, comp_name FROM company"
     cursor = db_conn.cursor()
-    cursor.execute(search_cmp)
+    cursor.execute(show_company)
     cmpList = cursor.fetchall()
     cursor.close()
 
     show_job = "SELECT job_name FROM internship"
     cursor = db_conn.cursor()
-    cursor.execute(search_cmp, (company_id))
+    cursor.execute(show_job, (company_id))
     jobName = cursor.fetchall()
     cursor.close()
 
