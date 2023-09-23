@@ -165,7 +165,8 @@ def signup():
 
 # Student login function
 @app.route('/studlogin', methods=['GET'])
-def signin_page():
+def student_signin():
+    # return render_template('StudLogin.html')
 
     cursor = db_conn.cursor()
     cursor.execute("SELECT std_id, std_pass FROM studentInformation")
@@ -174,15 +175,16 @@ def signin_page():
 
     student_id = request.args.get('std_lg_id')
     password = request.args.get('std_lg_pass')
-        
+
+
     if student_id and password:
         for row in dbPassword:
             if row[0] == student_id and row[1] == password:
-                
-                return render_template('StudentHomePage.html')
-            else:
-                return "Incorrect login details"
-    return (student_id)
+                session['std_id'] = student_id  # Store student_id in the session for future uses
+                return("Login Success!")
+            else: 
+                return("Wrong data 1")
+    return("Wrong data 2")
 
     
 
