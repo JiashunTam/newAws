@@ -216,7 +216,7 @@ def std_home_page():
 
     search_cmp = "SELECT comp_name, comp_industry, comp_address FROM company WHERE comp_id=%s"
     cursor = db_conn.cursor()
-    cursor.execute(search_cmp, (company_id))
+    cursor.execute(search_cmp, (std_company_id))
     cmpdetails = cursor.fetchall()
     cursor.close()
 
