@@ -336,7 +336,7 @@ def std_viewProfile():
     # return render_template('StudentProfile.html', student_id = student_id, cmpName = cmpName)
 
 
-    @app.route('/viewProfile', methods=['GET', 'POST'])
+    @app.route('/studentprofile', methods=['GET', 'POST'])
     def student_upload_file():
     # Retrieve company_log_id from the session
          global student_id
