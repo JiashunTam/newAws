@@ -177,7 +177,7 @@ def signin_page():
         
     if student_id and password:
         for row in student:
-            if row[0] == student_id and row[3] == student:
+            if row[0] == student_id and row[3] == password:
                 print ("Login successful")
                 return "correct"
             else:
