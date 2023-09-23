@@ -201,7 +201,7 @@ def signin_page():
         return render_template('StudentHomePage.html', std_cmpDetails = std_cmpDetails, std_jobDetails = std_jobDetails)
     else:
        
-        return "Invalid username or passw"
+        return print(stdPassword)
 
     
 
