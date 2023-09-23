@@ -185,7 +185,7 @@ def student_signin():
 
     show_job = "SELECT job_name FROM internship"
     cursor = db_conn.cursor()
-    cursor.execute(show_job, (company_id))
+    cursor.execute(show_job)
     jobName = cursor.fetchall()
     cursor.close()
 
