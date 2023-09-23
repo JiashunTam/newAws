@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session
 from pymysql import connections
 import os
+import numpy as np
 import boto3
 from config import *
 
@@ -168,7 +169,7 @@ def signup():
 def student_signin():
 
     global student_id 
-    
+
     cursor = db_conn.cursor()
     cursor.execute("SELECT std_id, std_pass FROM studentInformation")
     dbPassword = cursor.fetchall()
@@ -189,22 +190,7 @@ def student_signin():
     jobName = cursor.fetchall()
     cursor.close()
 
-    merged_data = []
-
-# Iterate over the company data and combine it with job data
-    for company_info in cmpList:
-    company_id, company_name = company_info
-    job_names_for_company = [job[0] for job in jobName if job[0] is not None]
-
-    # Create a dictionary for each company with its jobs
-    merged_company_data = {
-        'comp_id': company_id,
-        'comp_name': company_name,
-        'job_names': job_names_for_company
-    }
-
-    # Append the merged data to the list
-    merged_data.append(merged_company_data)
+    merged_company_data = np.concatenate((cmpList, jobName  ))
 
     if student_id and password:
         for row in dbPassword:
