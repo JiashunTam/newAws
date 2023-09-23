@@ -242,6 +242,7 @@ def std_viewCompany():
 
     company_name = cmpName[0]
     intern_status = "pending"
+    letter = "Please updtae that as soon as possible"
 
 
 
