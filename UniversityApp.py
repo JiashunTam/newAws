@@ -134,7 +134,7 @@ std_jobDetails = ""
 
 @app.route('/studentsignup', methods=['GET', 'POST'])
 def signup():
-    global student_password
+    
     student_id = request.form.get('std_id')
     first_name = request.form.get('std_first_name')
     last_name = request.form.get('std_last_name')
@@ -197,7 +197,7 @@ def signin_page():
         return render_template('StudentHomePage.html', std_cmpDetails = std_cmpDetails, std_jobDetails = std_jobDetails)
     else:
        
-        return print(stdPassword)
+        return student_id
 
     
 
