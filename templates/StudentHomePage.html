@@ -71,8 +71,12 @@
                 </tbody>
             </table>
 
-            <!-- <a href="{{url_for('toStdViewProfilePage')}}"><button class="btn btn--primary btn--small u-fullwidth">Student Profile</button></a> -->
-            <a href="{{url_for('toStdViewProfilePage')}}"><button class="btn btn--primary btn--small u-fullwidth">Sign In here.</button></a>
+            <form action="/viewProfile" autocomplete="on" method="POST">
+
+		  		<button type="submit" style="background: grey; height: 45px; width: 200px; color: white; size: 5; font:oblique;">Student Profile</button><br><br>
+
+			</form>
+
 		</body>
 	</font>
 </center>

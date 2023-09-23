@@ -10,8 +10,9 @@
 
 		<body bgcolor="lightgrey">
 
-			{% for stn_Infor in stnInfor %}<br><br>
+			
 					Student ID:<br> {{ student_id }} <br><br>
+                    {% for stn_Infor in stnInfor %}<br><br>
 
 			  		First Name:<br> {{ stn_Infor[0] }} <br><br>
 
@@ -31,8 +32,6 @@
                     <tr>
                         <td>{{cmpname[0]}}</td>
                         <td>{{cmpname[1]}}</td>
-                        {% endfor %}
-                        {% for jobname in jobName %}
                         <td>{{cmpname[2]}}</td>
                         {% endfor %}
                         

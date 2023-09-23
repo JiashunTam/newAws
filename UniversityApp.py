@@ -262,8 +262,9 @@ def std_viewCompany():
     # Student View Profile function
 @app.route('/viewProfile', methods=['GET', 'POST'])
 def std_viewProfile():
-    
-    global student_id
+        student_id = session.get('student_id')
+        std_company_id = session.get('std_company_id')
+
 
     search_cmp = "SELECT std_first_name, std_last_name FROM studentInformation WHERE std_id=%s"
     cursor = db_conn.cursor()
@@ -273,13 +274,13 @@ def std_viewProfile():
 
     
 
-    search_cmp = "SELECT * FROM student"
+    search_cmp = "SELECT cmp_id, cmp_name, intern_status FROM student WHERE std_id =%s"
     cursor = db_conn.cursor()
-    cursor.execute(search_cmp)
+    cursor.execute(search_cmp, (student_id))
     cmpName = cursor.fetchcall()
     cursor.close()
 
-    return render_template('StudentProfile.html', stdInfor = stdInfor, student_id = student_id, cmpName = cmpName)
+    return render_template('StudentProfile.html', stdInfor = stdInfor, student_id = student_id, cmpName = cmpName, std_company_id = std_company_id)
 
 
      #------------------------ Profile Page
