@@ -278,7 +278,7 @@ def std_viewProfile():
     search_cmp = "SELECT cmp_name, intern_status FROM student WHERE std_id =%s"
     cursor = db_conn.cursor()
     cursor.execute(search_cmp, (student_id))
-    cmpName = cursor.fetchcall()
+    cmpName = cursor.fetchall()
     cursor.close()
 
     return render_template('StudentProfile.html', stdInfor = stdInfor, student_id = student_id, cmpName = cmpName, std_company_id = std_company_id)
