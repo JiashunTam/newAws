@@ -178,25 +178,25 @@ def signin_page():
     select_stmt = "SELECT std_pass FROM studentInformation WHERE std_id =%s"
     cursor = db_conn.cursor()
     cursor.execute(select_stmt, (student_id))
-    dbPassword = cursor.fetchcall()
+    stdPassword = cursor.fetchall()
     cursor.close()
 
     
     cursor = db_conn.cursor()
     cursor.execute('SELECT comp_id, comp_name FROM company')
-    std_cmpDetails = cursor.fetchcall()
+    std_cmpDetails = cursor.fetchall()
     cursor.close()
 
     cursor = db_conn.cursor()
     cursor.execute('SELECT job_name FROM internship')
-    std_jobDetails = cursor.fetchcall()
+    std_jobDetails = cursor.fetchall()
     cursor.close()
 
     
 
 
     # Check if the student exists in the dictionary (for demonstration purposes)
-    if dbPassword == student_password:
+    if stdPassword == student_password:
         return f"Welcome, Student with ID {student_id}!"
         return render_template('StudentHomePage.html', std_cmpDetails = std_cmpDetails, std_jobDetails = std_jobDetails)
     else:
@@ -218,13 +218,13 @@ def std_home_page():
     search_cmp = "SELECT comp_name, comp_industry, comp_address FROM company WHERE comp_id=%s"
     cursor = db_conn.cursor()
     cursor.execute(search_cmp, (company_id))
-    cmpdetails = cursor.fetchcall()
+    cmpdetails = cursor.fetchall()
     cursor.close()
 
     search_intern = "SELECT job_id, job_name, job_description FROM internship WHERE comp_id=%s"
     cursor = db_conn.cursor()
     cursor.execute(search_intern, (company_id))   
-    std_internDetails = cursor.fetchcall()
+    std_internDetails = cursor.fetchall()
     cursor.close()
 
     return render_template('StudentViewCompany.html', cmpdetails = cmpdetails, std_internDetails = std_internDetails)
@@ -247,7 +247,7 @@ def std_viewCompany():
     search_cmp = "SELECT comp_name FROM company WHERE comp_id=%s"
     cursor = db_conn.cursor()
     cursor.execute(search_cmp, (company_id))
-    cmpName = cursor.fetchcall()
+    cmpName = cursor.fetchall()
     cursor.close()
 
     company_name = cmpName
@@ -276,7 +276,7 @@ def std_viewProfile():
     search_cmp = "SELECT std_first_name, std_last_name FROM studentInformation WHERE std_id=%s"
     cursor = db_conn.cursor()
     cursor.execute(search_cmp, (student_id))
-    stdInfor = cursor.fetchcall()
+    stdInfor = cursor.fetchall()
     cursor.close()
 
     
