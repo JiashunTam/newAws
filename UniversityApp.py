@@ -175,7 +175,7 @@ def signin_page():
     student_id = request.form.get('std_lg_id')
     password = request.form.get('std_lg_pass')
 
-    select_stmt = "SELECT std_password FROM studentInformation WHERE std_id =%s"
+    select_stmt = "SELECT std_pass FROM studentInformation WHERE std_id =%s"
     cursor = db_conn.cursor()
     cursor.execute(select_stmt, (student_id))
     dbPassword = cursor.fetchcall()
