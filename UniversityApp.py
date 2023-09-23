@@ -168,7 +168,7 @@ def signup():
 def signin_page():
 
     cursor = db_conn.cursor()
-    cursor.execute("SELECT std_id, std_pass FROM student")
+    cursor.execute("SELECT std_id, std_pass FROM studentInformation")
     student = cursor.fetchall()
     cursor.close()
 
