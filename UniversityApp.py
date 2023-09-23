@@ -262,8 +262,9 @@ def std_viewCompany():
     # Student View Profile function
 @app.route('/viewProfile', methods=['GET', 'POST'])
 def std_viewProfile():
-        student_id = session.get('student_id')
-        std_company_id = session.get('std_company_id')
+    student_id = session.get('student_id')
+
+    std_company_id = session.get('std_company_id')
 
 
     search_cmp = "SELECT std_first_name, std_last_name FROM studentInformation WHERE std_id=%s"
