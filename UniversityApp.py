@@ -172,8 +172,8 @@ def signin_page():
     student = cursor.fetchall()
     cursor.close()
 
-    student_id = request.form.get('std_lg_id')
-    password = request.form.get('std_lg_pass')
+    student_id = request.args.get('std_lg_id')
+    password = request.args.get('std_lg_pass')
         
     if student_id and password:
         for row in student:
