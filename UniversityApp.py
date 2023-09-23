@@ -242,15 +242,16 @@ def std_viewCompany():
 
     company_name = cmpName[0]
     intern_status = "pending"
-    letter = "Please updtae that as soon as possible"
 
 
 
-    apply_intern = "INSERT INTO student VALUES (%s, %s, %s, %s，%s, %s)"
+
+    apply_intern = "INSERT INTO student VALUES (%s, %s, %s, %s ,%s, %s)"
     cursor = db_conn.cursor()
-    cursor.execute(apply_intern, (student_id, std_company_id, company_name, intern_status, letter, letter))
+    cursor.execute(apply_intern, (student_id, std_company_id, company_name, intern_status, "", ""))
     db_conn.commit()
     cursor.close()
+
 
     
 
