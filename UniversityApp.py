@@ -99,22 +99,22 @@ def toStdSignUp():
     return render_template('StudentSignUp.html')
 
 # Redirect to login
-@app.route('/StudLoginPage')
+@app.route('/toStdLogin')
 def toStdLogin():
     return render_template('StudLogin.html')
     
 # Redirect to StudentHomePage
-@app.route('/StudHomePage')
+@app.route('/toStdHomePage')
 def toStdHomePage():
     return render_template('StudentHomePage.html')
 
 # Redirect to StudentHomePage
-@app.route('/StudViewCompany')
+@app.route('/toStdViewCompPage')
 def toStdViewCompPage():
     return render_template('StudentViewCompany.html')
 
 # Redirect to StudentHomePage
-@app.route('/StudViewProfile')
+@app.route('/toStdViewProfilePage')
 def toStdViewProfilePage():
     return render_template('StudentProfile.html')
 
