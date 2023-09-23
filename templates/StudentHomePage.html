@@ -58,8 +58,11 @@
                     <tr>
                         <td>{{cmpname[0]}}</td>
                         <td>{{cmpname[1]}}</td>
-                        <td>{{cmpname[2]}}</td>
                         {% endfor %}
+                        {% for jobName in jobName %}
+                        <td>{{jobName[0]}}</td>
+                        {% endfor %}
+                        
                     </tr>
                 </thead>
                 <tbody id="showCompanyTable">
