@@ -164,19 +164,19 @@ def signup():
 #------------------------------------------------------------signin
 
 # Student login function
-@app.route('/studlogin', methods=['GET', 'POST'])
+@app.route('/studlogin', methods=['GET'])
 def signin_page():
 
     cursor = db_conn.cursor()
     cursor.execute("SELECT std_id, std_pass FROM studentInformation")
-    student = cursor.fetchall()
+    dbPassword = cursor.fetchall()
     cursor.close()
 
     student_id = request.args.get('std_lg_id')
     password = request.args.get('std_lg_pass')
         
     if student_id and password:
-        for row in student:
+        for row in dbPassword:
             if row[0] == student_id and row[1] == password:
                 
                 return render_template('StudentHomePage.html')
