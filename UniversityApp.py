@@ -177,7 +177,7 @@ def signin_page():
         
     if student_id and password:
         for row in student:
-            if row[0] == student_id and row[3] == password:
+            if row[0] == student_id and row[1] == password:
                 
                 return render_template('StudentHomePage.html')
             else:
