@@ -6,6 +6,9 @@ from config import *
 
 app = Flask(__name__)
 
+# Set a secret key for your Flask application
+app.secret_key = 'never_gonna_give_you_up_never_gonna_let_you_down_never_gonna_run_around_and_hurt_you'  # Replace with a long and secure secret key
+
 bucket = custombucket
 region = customregion
 
