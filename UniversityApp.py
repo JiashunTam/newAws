@@ -230,21 +230,17 @@ def std_home_page():
     # Student apply intern function
 @app.route('/stdapplyintern', methods=['GET', 'POST'])
 def std_viewCompany():
-    
-    global std_cmpDetails
-    global std_jobDetails
-
-    global student_id
-
-    global company_id
+    student_id = session.get('student_id')
+    std_company_id = session.get('std_company_id')
+  
 
     search_cmp = "SELECT comp_name FROM company WHERE comp_id=%s"
     cursor = db_conn.cursor()
-    cursor.execute(search_cmp, (company_id))
+    cursor.execute(search_cmp, (std_company_id))
     cmpName = cursor.fetchall()
     cursor.close()
 
-    company_name = cmpName
+    company_name = cmpName[0]
     intern_status = "pending"
 
 
@@ -257,7 +253,7 @@ def std_viewCompany():
 
     
 
-    return render_template('StudentHomePage.html', std_cmpDetails = std_cmpDetails, std_jobDetails = std_jobDetails)
+    return "You are succeessful to apply!"
 
             #------------------------Student View Profile Page
 
