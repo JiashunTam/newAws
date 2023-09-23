@@ -166,43 +166,27 @@ def signup():
 # Student login function
 @app.route('/studlogin', methods=['GET', 'POST'])
 def signin_page():
-    # return render_template('StudLogin.html')
-    global student_id  # Declare student_id as a global variable if not already declared globally
-    global std_cmpDetails
-    global std_jobDetails
-    global student_password
-
-    student_id = request.form.get('std_lg_id')
-    password = request.form.get('std_lg_pass')
-
-    select_stmt = "SELECT std_pass FROM studentInformation WHERE std_id =%s"
-    cursor = db_conn.cursor()
-    stdPassword = cursor.execute(select_stmt, (student_id))
-    stdPassword = cursor.fetchall()
-    stdPassword = stdPassword[0]
-    cursor.close()
-
-    
-    cursor = db_conn.cursor()
-    cursor.execute('SELECT comp_id, comp_name FROM company')
-    std_cmpDetails = cursor.fetchall()
-    cursor.close()
 
     cursor = db_conn.cursor()
-    cursor.execute('SELECT job_name FROM internship')
-    std_jobDetails = cursor.fetchall()
+    cursor.execute("SELECT std_id, std_pass FROM student")
+    student = cursor.fetchall()
     cursor.close()
+
+    student_id = request.args.get('std_lg_id')
+    password = request.args.get('std_lg_pass')
+        
+    if student_id and password:
+        for row in student:
+            if row[0] == student_id and row[3] == staff_log_password:
+                print ("Login successful")
+                return render_template('StudentHomePage.html')
+            else:
+                return "Incorrect login details"
+    return (password)
 
     
 
 
-    # Check if the student exists in the dictionary (for demonstration purposes)
-    if student_password == stdPassword:
-       
-        return render_template('StudentHomePage.html', std_cmpDetails = std_cmpDetails, std_jobDetails = std_jobDetails)
-    else:
-       
-        return "Invalid username or passw"
 
     
 
