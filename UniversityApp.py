@@ -267,9 +267,9 @@ def std_viewProfile():
     std_company_id = session.get('std_company_id')
 
 
-    search_cmp = "SELECT std_first_name, std_last_name FROM studentInformation WHERE std_id=%s"
+    search_std_name = "SELECT std_first_name, std_last_name FROM studentInformation WHERE std_id=%s"
     cursor = db_conn.cursor()
-    cursor.execute(search_cmp, (student_id))
+    cursor.execute(search_std_name, (student_id))
     stdInfor = cursor.fetchall()
     cursor.close()
 
