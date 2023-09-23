@@ -175,11 +175,7 @@ def signin_page():
     student_id = request.form.get('std_lg_id')
     password = request.form.get('std_lg_pass')
 
-    select_stmt = "SELECT std_pass FROM studentInformation WHERE std_id =%s"
-    cursor = db_conn.cursor()
-    stdPassword = cursor.execute(select_stmt, (student_id))
-    stdPassword = cursor.fetchone()[0]
-    cursor.close()
+    
 
     
     cursor = db_conn.cursor()
@@ -196,7 +192,7 @@ def signin_page():
 
 
     # Check if the student exists in the dictionary (for demonstration purposes)
-    if student_password == stdPassword:
+    if student_password == password:
        
         return render_template('StudentHomePage.html', std_cmpDetails = std_cmpDetails, std_jobDetails = std_jobDetails)
     else:
