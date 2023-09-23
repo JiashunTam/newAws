@@ -166,6 +166,9 @@ def signup():
 # Student login function
 @app.route('/studlogin', methods=['GET'])
 def student_signin():
+
+    global student_id 
+    
     cursor = db_conn.cursor()
     cursor.execute("SELECT std_id, std_pass FROM studentInformation")
     dbPassword = cursor.fetchall()
@@ -174,11 +177,40 @@ def student_signin():
     student_id = request.args.get('std_lg_id')
     password = request.args.get('std_lg_pass')
 
+    show_company = "SELECT comp_id, comp_name FROM company"
+    cursor = db_conn.cursor()
+    cursor.execute(search_cmp)
+    cmpList = cursor.fetchall()
+    cursor.close()
+
+    show_job = "SELECT job_name FROM internship"
+    cursor = db_conn.cursor()
+    cursor.execute(search_cmp, (company_id))
+    jobName = cursor.fetchall()
+    cursor.close()
+
+    merged_data = []
+
+# Iterate over the company data and combine it with job data
+    for company_info in cmpList:
+    company_id, company_name = company_info
+    job_names_for_company = [job[0] for job in jobName if job[0] is not None]
+
+    # Create a dictionary for each company with its jobs
+    merged_company_data = {
+        'comp_id': company_id,
+        'comp_name': company_name,
+        'job_names': job_names_for_company
+    }
+
+    # Append the merged data to the list
+    merged_data.append(merged_company_data)
+
     if student_id and password:
         for row in dbPassword:
             if row[0] == student_id and row[1] == password:
                 # session['std_id'] = student_id  # Store student_id in the session for future uses
-                return render_template('StudentHomePage.html')
+                return render_template('StudentHomePage.html', std_cmpDetails = merged_company_data)
         
         # If none of the rows matched, return an error message
         return "Wrong username or password"
