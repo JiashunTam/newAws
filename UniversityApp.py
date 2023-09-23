@@ -115,7 +115,7 @@ def toStdViewCompPage():
 
 # Redirect to StudentHomePage
 @app.route('/StudViewProfile')
-def toStdViewCompPage():
+def toStdViewProfilePage():
     return render_template('StudentProfile.html')
 
     
