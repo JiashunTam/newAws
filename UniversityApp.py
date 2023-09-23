@@ -82,7 +82,7 @@ output = {}
 # Home page
 @app.route("/", methods=['GET', 'POST'])
 def home():
-    return render_template('StudentSignUp.html')
+    return render_template('StudentHomePage.html')
 
 # START CODING HERE
 
