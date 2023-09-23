@@ -177,14 +177,13 @@ def signin_page():
 
     select_stmt = "SELECT std_pass FROM studentInformation WHERE std_id =%s"
     cursor = db_conn.cursor()
-    cursor.execute(select_stmt, (student_id))
-    stdPassword = cursor.fetchmany(size=1)
+    stdPassword = cursor.execute(select_stmt, (student_id))
     cursor.close()
 
     
     cursor = db_conn.cursor()
     cursor.execute('SELECT comp_id, comp_name FROM company')
-    std_cmpDetails = cursor.fetchone()
+    std_cmpDetails = cursor.fetchall()
     cursor.close()
 
     cursor = db_conn.cursor()
@@ -201,7 +200,7 @@ def signin_page():
         return render_template('StudentHomePage.html', std_cmpDetails = std_cmpDetails, std_jobDetails = std_jobDetails)
     else:
        
-        return "Invalid username or password"
+        return "Invalid username or passw"
 
     
 
