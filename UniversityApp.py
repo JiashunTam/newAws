@@ -275,7 +275,7 @@ def std_viewProfile():
 
     
 
-    search_cmp = "SELECT cmp_id, cmp_name, intern_status FROM student WHERE std_id =%s"
+    search_cmp = "SELECT cmp_name, intern_status FROM student WHERE std_id =%s"
     cursor = db_conn.cursor()
     cursor.execute(search_cmp, (student_id))
     cmpName = cursor.fetchcall()
