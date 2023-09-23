@@ -140,7 +140,7 @@ def signup():
     last_name = request.form.get('std_last_name')
     student_password = request.form.get('std_pass')
     confirm_password = request.form.get('confirm_std_pass')
-    intern_status = "None"
+
 
     # Check if passwords match
     if student_password != confirm_password:
